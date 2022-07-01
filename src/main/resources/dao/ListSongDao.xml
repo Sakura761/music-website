@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sakura.dao.ListSongDao">
+    <resultMap id="ListSongMap" type="com.sakura.domain.ListSong">
+        <id column="id" property="id"></id>
+        <result column="song_id" property="songId"></result>
+        <result column="song_list_id" property="songListId"></result>
+    </resultMap>
+    <select id="getListSongOfSongId" resultMap="ListSongMap">
+        select * from list_song where song_list_id = #{songListId}
+    </select>
+</mapper>

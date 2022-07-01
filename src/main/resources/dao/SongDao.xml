@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sakura.dao.SongDao">
+    <resultMap id="SongResultMap" type="com.sakura.domain.Song">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="singer_id" property="singerId"/>
+        <result column="name" property="name"/>
+        <result column="introduction" property="introduction"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="pic" property="pic"/>
+        <result column="lyric" property="lyric"/>
+        <result column="url" property="url"/>
+    </resultMap>
+    <select id="getSongBySingerId" resultMap="SongResultMap">
+        select id,singer_id,name,introduction,create_time,update_time,pic,lyric,url from song where singer_id = #{singerId}
+    </select>
+    <select id="getSongBySingerName" resultMap="SongResultMap">
+        select * from song where name like #{name}
+    </select>
+    <select id="getSongById" resultMap="SongResultMap">
+        select * from song where id = #{id}
+    </select>
+</mapper>

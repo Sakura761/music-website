@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sakura.dao.RankListDao">
+    <resultMap id="RankResultMap" type="com.sakura.domain.RankList">
+        <id column="id" property="id"/>
+        <result column="songList_id" property="songListId"/>
+        <result column="consumer_id" property="consumerId"/>
+        <result column="score" property="score"/>
+    </resultMap>
+    <insert id="setRank" parameterType="com.sakura.domain.RankList">
+        insert into rank_list
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="songListId != null">
+            songListId,
+        </if>
+        <if test="consumerId != null">
+            consumerId,
+        </if>
+        <if test="score != null">
+            score,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="songListId != null"> #{songListId,jdbcType=BIGINT},
+            </if>
+            <if test="consumerId != null"> #{consumerId,jdbcType=BIGINT},
+            </if>
+            <if test="score != null"> #{score,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+</mapper>
